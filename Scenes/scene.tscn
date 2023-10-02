@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cpbqyhfi07t8f"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_til2b"]
+[ext_resource type="Texture2D" uid="uid://b06vxu4y64o2t" path="res://Assets/jgfliq4q.bmp" id="2_vlabj"]
+[ext_resource type="Texture2D" uid="uid://jblxhwtapps4" path="res://Assets/chest2.png" id="3_fryf2"]
+[ext_resource type="Script" path="res://Scripts/TreasureArea.gd" id="3_rcisy"]
+[ext_resource type="Script" path="res://Scripts/Treasure.gd" id="4_7j42f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kttng"]
+size = Vector2(29.5, 31.3191)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cc65"]
+size = Vector2(20, 16.5)
+
+[node name="Scene1" type="Node2D"]
+
+[node name="IslandMap" type="Node2D" parent="."]
+
+[node name="Island" type="Polygon2D" parent="IslandMap"]
+position = Vector2(7, 42)
+scale = Vector2(0.985834, 0.965849)
+polygon = PackedVector2Array(-213, -122, -215.029, 174.113, 284.041, 172.042, 285.055, -122, 210.878, -122)
+
+[node name="Treasure" type="Sprite2D" parent="IslandMap"]
+position = Vector2(243, -90)
+scale = Vector2(2, 1.46875)
+texture = ExtResource("3_fryf2")
+hframes = 2
+script = ExtResource("4_7j42f")
+
+[node name="TreasureArea" type="Area2D" parent="IslandMap/Treasure"]
+script = ExtResource("3_rcisy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IslandMap/Treasure/TreasureArea"]
+position = Vector2(-0.25, -3.8147e-06)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_kttng")
+
+[node name="Player" type="Node2D" parent="."]
+scale = Vector2(2, 2)
+script = ExtResource("1_til2b")
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_vlabj")
+
+[node name="PlayerArea" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PlayerArea"]
+position = Vector2(0, -1.75)
+shape = SubResource("RectangleShape2D_3cc65")
+
+[node name="Camera2D" type="Camera2D" parent="."]

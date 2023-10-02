@@ -36,7 +36,7 @@ The game is developed using the Godot engine. Godot is chosen for its user-frien
 To get a local copy up and running, follow these steps:
 
 1. Clone the repository
-   ```bash
+   ```git
    git clone https://github.com/MashdorDev/AI-Treasure-Hunt.git
    ```
 2. Open the project in Godot
