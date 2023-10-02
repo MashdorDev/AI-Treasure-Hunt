@@ -1,10 +1,10 @@
-extends Sprite2D  
+extends Area2D
 
 func _ready():
-	print_debug("Tresaure Detected")
-	pass
+	print_debug("Treasure ready")
+	self.area_entered.connect(_on_Treasure_area_entered)
 
-func _on_Player_body_entered(body):
-	if body.name == "Player":
-		print_debug("Player Detected")
-		queue_free()  # Remove the treasure when the player collides with it
+func _on_Treasure_area_entered(area: Area2D) -> void:
+	if area.name == "Player":
+		print_debug("Treasure collected")
+		self.queue_free()
