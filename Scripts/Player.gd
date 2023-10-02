@@ -3,6 +3,7 @@ extends Node2D
 var speed = 400  # Speed in pixels per second
 
 func _ready():
+	self.name = "Player"  # Make sure the node is named "Player"
 	pass
 
 func _process(delta):
