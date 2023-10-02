@@ -41,6 +41,7 @@ scale = Vector2(2, 2)
 script = ExtResource("1_til2b")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
+rotation = -1.5708
 texture = ExtResource("2_vlabj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
