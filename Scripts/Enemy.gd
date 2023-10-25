@@ -1,7 +1,8 @@
 extends Node2D
 
-var speed: float = 10.0
+var speed: float = 20.0
 var player: Node2D
+var player_velocity: Vector2  # Assuming this is updated in your player script
 var end_game_triggered: bool = false
 var current_velocity: Vector2 = Vector2()
 var is_seeking: bool = true
@@ -14,7 +15,8 @@ func _ready():
 func _physics_process(delta):
 	if player == null or end_game_triggered or not is_seeking:
 		return
-	seek(player.global_position, delta)
+	player_velocity = player.get("current_velocity")  # Replace 'current_velocity' with the actual variable name in your player script
+	seek(player.global_position + player_velocity * delta, delta)
 
 func seek(target_position: Vector2, delta: float) -> void:
 	var distance_to_player = global_position.distance_to(target_position)
@@ -36,7 +38,6 @@ func seek(target_position: Vector2, delta: float) -> void:
 	var steering: Vector2 = desired_velocity - current_velocity
 	current_velocity += steering * delta
 	global_position += current_velocity * delta
-
 
 func _on_body_entered(body: Node) -> void:
 	print("Body entered: ", body.name)
