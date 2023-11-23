@@ -8,6 +8,9 @@ var end_game_triggered: bool = false
 var current_velocity: Vector2 = Vector2()
 var is_seeking: bool = true
 
+enum States { SEEK, EVADE, PATROL, FOLLOW_LEADER }
+var state = States.SEEK
+
 func _ready():
 	print_debug("Hello From Enemy")
 	player = get_node("../Player")  # Ensure this correctly references the player node

@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpbqyhfi07t8f"]
+[gd_scene load_steps=11 format=3 uid="uid://cpbqyhfi07t8f"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_til2b"]
 [ext_resource type="Texture2D" uid="uid://jblxhwtapps4" path="res://Assets/Chest/chest2.png" id="2_25gkw"]
+[ext_resource type="Texture2D" uid="uid://jb8vfc72bx7x" path="res://Assets/Weapons/MP5/MP5.png" id="3_ln5am"]
 [ext_resource type="Script" path="res://Scripts/Treasure.gd" id="4_7j42f"]
 [ext_resource type="Texture2D" uid="uid://b06vxu4y64o2t" path="res://Assets/Player/jgfliq4q.bmp" id="4_baykx"]
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="5_xaii1"]
 [ext_resource type="Texture2D" uid="uid://vqy8wrqhqodd" path="res://Assets/Enemy/alienPink_stand.png" id="6_oohnw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kttng"]
-size = Vector2(33.5, 38.1277)
+size = Vector2(19.75, 18.0788)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dg6pi"]
 radius = 8.43
@@ -42,6 +43,22 @@ shape = SubResource("RectangleShape2D_kttng")
 position = Vector2(1, 0.680847)
 texture = ExtResource("2_25gkw")
 hframes = 2
+
+[node name="WeaponArea" type="Area2D" parent="IslandMap"]
+position = Vector2(-320, -125)
+scale = Vector2(4, 2.15723)
+script = ExtResource("4_7j42f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IslandMap/WeaponArea"]
+position = Vector2(0.375, 3.01313)
+shape = SubResource("RectangleShape2D_kttng")
+
+[node name="Sprite2D" type="Sprite2D" parent="IslandMap/WeaponArea"]
+position = Vector2(1, 2.78134)
+scale = Vector2(0.0694444, 0.124422)
+texture = ExtResource("3_ln5am")
+region_rect = Rect2(2.875, 4.995, 1.305, 1.44)
+region_filter_clip_enabled = true
 
 [node name="Player" type="Area2D" parent="."]
 position = Vector2(-144, 253)
