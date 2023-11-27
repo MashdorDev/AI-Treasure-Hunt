@@ -101,3 +101,7 @@ func get_player_radius() -> float:
 	if collision_shape is CircleShape2D:
 		return collision_shape.radius
 	return 0
+	
+	
+func is_holding_gun() -> bool:
+	return has_weapon
