@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba6tl4t8ragcf"]
+
+[ext_resource type="Texture2D" uid="uid://h84w8plpopc4" path="res://Assets/Bullet/Bullet_Head.png" id="1_7hun4"]
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_ikrol"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wm8qw"]
+radius = 6.99981
+height = 27.9992
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_ikrol")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.58554
+scale = Vector2(0.1, 0.073)
+texture = ExtResource("1_7hun4")
+
+[node name="Bullet" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet"]
+rotation = 1.57826
+shape = SubResource("CapsuleShape2D_wm8qw")

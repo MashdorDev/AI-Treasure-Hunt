@@ -6,5 +6,6 @@ func _ready():
 
 func _on_Treasure_area_entered(area: Area2D) -> void:
 	if area.name == "Player":
-		print_debug("Weapon collected")
+		print_debug("Treasure collected")
+		
 		self.queue_free()

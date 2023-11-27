@@ -2,26 +2,34 @@ extends Node2D
 
 var speed: float = 220.0
 var prediction_time: float = 0.5
+var Bullet: Area2D
 var player: Node2D
 var player_velocity: Vector2
 var end_game_triggered: bool = false
 var current_velocity: Vector2 = Vector2()
 var is_seeking: bool = true
 
+
 enum States { SEEK, EVADE, PATROL, FOLLOW_LEADER }
 var state = States.SEEK
 
 func _ready():
 	print_debug("Hello From Enemy")
-	player = get_node("../Player")  # Ensure this correctly references the player node
-	self.area_entered.connect(_on_body_entered)  # Connect collision signal
-	set_process(true)
+	player = get_node_or_null("../Player")  # Use get_node_or_null for safer access
+	if player == null:
+		print("Player node not found.")
+	self.area_entered.connect(_on_body_entered)
 
 func _physics_process(delta):
 	if player == null or end_game_triggered or not is_seeking:
 		return
 
-	player_velocity = player.get("current_velocity")
+	var player_node = player as Node2D  # Cast to Node2D if you're sure it's the correct type
+	if player_node != null and player_node.has_method("get_current_velocity"):
+		player_velocity = player_node.get_current_velocity()
+	else:
+		player_velocity = Vector2.ZERO
+
 	var predicted_position = player.global_position + player_velocity * prediction_time
 	seek(predicted_position, delta)
 
@@ -43,6 +51,14 @@ func seek(target_position: Vector2, delta: float) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	print_debug(body.name)
+	
+	if body.name == "Bullet":
+		print_debug("Bullet detected")
+		self.queue_free()
+		trigger_end_game()
+		# Handle bullet collision logic here
+	
 	if body == player:
 		print("collided with player")
 		player.queue_free()  # Delete the player on collision
