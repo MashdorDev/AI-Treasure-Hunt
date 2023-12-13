@@ -1,0 +1,49 @@
+# Godot-specific ignore rules
+.godot/
+.export/
+.import/
+*.import
+*.pck
+*.exe
+*.apk
+*.x86_64
+*.zip
+
+# Mono-specific ignore rules
+.mono/
+*.sln
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln.docstates
+*.bak
+
+# macOS-specific ignore rules
+.DS_Store
+
+# Windows-specific ignore rules
+Thumbs.db
+
+# Linux-specific ignore rules
+*.swp
+*~
+
+# User-specific files
+*.autosave
+
+# Logs and databases
+*.log
+*.sqlite3
+*.dat
+
+# Generated files
+*.gen.*
+
+# Backup files
+*.bak
+
+# Other
+*.tmp
+*.swp
+*.lock

@@ -1,0 +1,89 @@
+[gd_scene load_steps=12 format=3 uid="uid://cpbqyhfi07t8f"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_til2b"]
+[ext_resource type="Texture2D" uid="uid://jblxhwtapps4" path="res://Assets/Chest/chest2.png" id="2_25gkw"]
+[ext_resource type="Texture2D" uid="uid://jb8vfc72bx7x" path="res://Assets/Weapons/MP5/MP5.png" id="3_ln5am"]
+[ext_resource type="Script" path="res://Scripts/Weapon.gd" id="3_obc6l"]
+[ext_resource type="Script" path="res://Scripts/Treasure.gd" id="4_7j42f"]
+[ext_resource type="Texture2D" uid="uid://b06vxu4y64o2t" path="res://Assets/Player/jgfliq4q.bmp" id="4_baykx"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="5_xaii1"]
+[ext_resource type="Texture2D" uid="uid://vqy8wrqhqodd" path="res://Assets/Enemy/alienPink_stand.png" id="6_oohnw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kttng"]
+size = Vector2(19.75, 18.0788)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dg6pi"]
+radius = 8.43
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bwhv1"]
+radius = 24.0
+height = 70.0
+
+[node name="Scene1" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.61, 0.61)
+
+[node name="IslandMap" type="Node2D" parent="."]
+
+[node name="Island" type="Polygon2D" parent="IslandMap"]
+position = Vector2(-69, 2)
+rotation = -0.00259161
+scale = Vector2(1.80085, 1.72675)
+color = Color(0.764706, 0.764706, 0.764706, 1)
+polygon = PackedVector2Array(-213, -122, -215.029, 174.113, 284.041, 172.042, 285.055, -122, 210.878, -122)
+
+[node name="TreasureArea" type="Area2D" parent="IslandMap"]
+position = Vector2(243, -90)
+scale = Vector2(2, 1.46875)
+script = ExtResource("4_7j42f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IslandMap/TreasureArea"]
+position = Vector2(0.5, 0.680847)
+shape = SubResource("RectangleShape2D_kttng")
+
+[node name="TreasureSprite" type="Sprite2D" parent="IslandMap/TreasureArea"]
+position = Vector2(1, 0.680847)
+texture = ExtResource("2_25gkw")
+hframes = 2
+
+[node name="WeaponArea" type="Area2D" parent="IslandMap"]
+position = Vector2(-320, -125)
+scale = Vector2(4, 2.15723)
+script = ExtResource("3_obc6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="IslandMap/WeaponArea"]
+position = Vector2(0.375, 3.01313)
+shape = SubResource("RectangleShape2D_kttng")
+
+[node name="Sprite2D" type="Sprite2D" parent="IslandMap/WeaponArea"]
+position = Vector2(1, 2.78134)
+scale = Vector2(0.0694444, 0.124422)
+texture = ExtResource("3_ln5am")
+region_rect = Rect2(2.875, 4.995, 1.305, 1.44)
+region_filter_clip_enabled = true
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(-144, 253)
+scale = Vector2(2, 2)
+collision_mask = 2
+script = ExtResource("1_til2b")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+rotation = 1.5708
+texture = ExtResource("4_baykx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_dg6pi")
+
+[node name="Enemy" type="Area2D" parent="."]
+position = Vector2(414, -229)
+script = ExtResource("5_xaii1")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_oohnw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("CapsuleShape2D_bwhv1")
