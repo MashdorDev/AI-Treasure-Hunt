@@ -15,7 +15,7 @@
 
 ## Overview
 
-**AI Treasure Hunt** is a 2D top-down game developed as part of the GAME 307 AI course assignment. The game features a player-controlled character navigating a small map to collect treasures while avoiding an AI-controlled enemy. The AI utilizes basic Steering, Pathfinding, and Decision-Making algorithms.
+**AI Treasure Hunt** is a 2D top-down game. The game features a player-controlled character navigating a small map to collect treasures while avoiding an AI-controlled enemy. The AI utilizes basic Steering, Pathfinding, and Decision-Making algorithms.
 
 ## Engine
 
